@@ -144,7 +144,7 @@ fun searchCarmeetbyLocation() {
     val location = readlnOrNull()?.trim().orEmpty()
 
     if (location.isNotEmpty()){
-        val carmeet = store.findOnebyString(location)
+        val carmeet = store.findOnebyLocation(location)
         if (carmeet != null) {
             println("Found: ID: ${carmeet.id} | Title: ${carmeet.title} | Description: ${carmeet.description} | Location: ${carmeet.location}")
         }

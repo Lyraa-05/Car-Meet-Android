@@ -42,7 +42,7 @@ class CarmeetStore {
         return carmeets.find { p -> p.id == id }
     }
 
-    fun findOnebyString(location: String): CarmeetModel? {
+    fun findOnebyLocation(location: String): CarmeetModel? {
         return carmeets.find { p ->
             p.location.contains(location, ignoreCase = true)
         }

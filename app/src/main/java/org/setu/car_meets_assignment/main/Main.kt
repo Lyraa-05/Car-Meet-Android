@@ -15,7 +15,8 @@ fun main() {
             2 -> listCarmeets()
             3 -> updateCarmeet()
             4 -> deleteCarmeet()
-            5 -> searchCarmeet()
+            5 -> searchCarmeetbyID()
+            6 -> searchCarmeetbyLocation()
             0 -> println("\nExiting Car meet application. Goodbye!")
             else -> println("\nInvalid option. Please try again.")
         }
@@ -74,7 +75,7 @@ fun updateCarmeet() {
     print("\nEnter ID of Carmeet to update: ")
     val id = readlnOrNull()?.toLongOrNull()
 
-    if (id != null && store.findOne(id) != null) {
+    if (id != null && store.findOnebyID(id) != null) {
         print("Enter New Title: ")
         val title = readlnOrNull()?.trim().orEmpty()
         print("Enter New Description: ")
@@ -120,13 +121,13 @@ fun deleteCarmeet() {
     }
 }
 
-fun searchCarmeet() {
+fun searchCarmeetbyID() {
     println("\n--- Search Carmeet ---")
     print("Enter ID: ")
     val id = readlnOrNull()?.toLongOrNull()
 
     if (id != null) {
-        val carmeet = store.findOne(id)
+        val carmeet = store.findOnebyID(id)
         if (carmeet != null) {
             println("Found: ID: ${carmeet.id} | Title: ${carmeet.title} | Description: ${carmeet.description} | Location: ${carmeet.location}")
         } else {
@@ -134,5 +135,24 @@ fun searchCarmeet() {
         }
     } else {
         println("Invalid ID entered.")
+    }
+}
+
+fun searchCarmeetbyLocation() {
+    println("\n -- Search Carmeet ---")
+    print("Enter Location: ")
+    val location = readlnOrNull()?.trim().orEmpty()
+
+    if (location.isNotEmpty()){
+        val carmeet = store.findOnebyString(location)
+        if (carmeet != null) {
+            println("Found: ID: ${carmeet.id} | Title: ${carmeet.title} | Description: ${carmeet.description} | Location: ${carmeet.location}")
+        }
+        else {
+            println("No carmeet found with Location $location.")
+        }
+    }
+    else {
+        println("Invalid Location entered.")
     }
 }

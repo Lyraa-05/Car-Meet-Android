@@ -17,7 +17,7 @@ class CarmeetStore {
     }
 
     fun update(carmeet: CarmeetModel): Boolean {
-        val foundCarmeet = findOne(carmeet.id)
+        val foundCarmeet = findOnebyID(carmeet.id)
         return if (foundCarmeet != null) {
             foundCarmeet.title = carmeet.title;
             foundCarmeet.description = carmeet.description;
@@ -29,7 +29,7 @@ class CarmeetStore {
     }
 
     fun delete(id: Long): Boolean {
-        val foundCarmeet= findOne(id)
+        val foundCarmeet = findOnebyID(id)
         return if (foundCarmeet != null) {
             carmeets.remove(foundCarmeet)
             true
@@ -38,8 +38,14 @@ class CarmeetStore {
         }
     }
 
-    fun findOne(id: Long): CarmeetModel? {
+    fun findOnebyID(id: Long): CarmeetModel? {
         return carmeets.find { p -> p.id == id }
+    }
+
+    fun findOnebyString(location: String): CarmeetModel? {
+        return carmeets.find { p ->
+            p.location.contains(location, ignoreCase = true)
+        }
     }
 }
 

@@ -22,6 +22,7 @@ class CarmeetStore {
             foundCarmeet.title = carmeet.title;
             foundCarmeet.description = carmeet.description;
             foundCarmeet.location = carmeet.location;
+            foundCarmeet.date = carmeet.date;
             true
         } else {
             false

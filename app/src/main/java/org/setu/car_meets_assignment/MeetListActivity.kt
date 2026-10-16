@@ -2,7 +2,7 @@ package org.setu.car_meets_assignment
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +40,7 @@ class MeetListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val returnButton =
-            findViewById<Button>(R.id.returnButton)
+            findViewById<ImageView>(R.id.returnButton)
 
         returnButton.setOnClickListener {
 

@@ -10,8 +10,8 @@ import org.setu.car_meets_assignment.models.CarmeetModel
 
 class CarMeetAdapter(
     private var meets: List<CarmeetModel>,
-    private val onEdit: (CarmeetModel) -> Unit,
-    private val onDelete: (CarmeetModel) -> Unit
+    private val listener: OnMeetListener
+
 ) : RecyclerView.Adapter<CarMeetAdapter.MeetViewHolder>() {
 
     class MeetViewHolder(itemView: View) :
@@ -29,11 +29,6 @@ class CarMeetAdapter(
         val dateText: TextView =
             itemView.findViewById(R.id.dateText)
 
-        val editButton: Button =
-            itemView.findViewById(R.id.editButton)
-
-        val deleteButton: Button =
-            itemView.findViewById(R.id.deleteButton)
     }
 
     override fun onCreateViewHolder(
@@ -69,13 +64,14 @@ class CarMeetAdapter(
 
         holder.dateText.text = "Date: ${meet.date}"
 
-        holder.editButton.setOnClickListener {
-            onEdit(meet)
+        holder.itemView.setOnClickListener {
+            listener.onMeetClick(meet)
         }
 
-        holder.deleteButton.setOnClickListener {
-            onDelete(meet)
+        holder.itemView.setOnLongClickListener {
+            listener.onMeetLongClick(meet)
         }
+
     }
 
     override fun getItemCount(): Int {

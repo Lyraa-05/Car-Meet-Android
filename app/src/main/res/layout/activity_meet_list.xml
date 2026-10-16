@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -12,9 +13,11 @@
         android:id="@+id/meetsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:padding="45dp"
         android:text="Car Meets"
         android:textAlignment="center"
+        android:textColor="#3A76FA"
         android:textSize="28sp"
         android:textStyle="bold" />
 
@@ -24,11 +27,16 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Button
+    <ImageView
         android:id="@+id/returnButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#3A76FA"
-        android:text="Back to menu" />
+        android:layout_height="86dp"
+        android:layout_marginTop="0dp"
+        android:clickable="true"
+        android:contentDescription="Back to menu"
+        android:focusable="true"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/e36" />
 
 </LinearLayout>

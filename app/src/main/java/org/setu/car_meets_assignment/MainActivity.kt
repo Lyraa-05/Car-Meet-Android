@@ -18,13 +18,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val viewMarksButton =
+        val viewMeetsButton =
             findViewById<Button>(R.id.viewMeetsButton)
 
         val addMarkButton =
             findViewById<Button>(R.id.addMeetButton)
 
-        viewMarksButton.setOnClickListener {
+        viewMeetsButton.setOnClickListener {
             startActivity(
                 Intent(this, MeetListActivity::class.java)
             )

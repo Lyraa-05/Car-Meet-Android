@@ -26,6 +26,9 @@ class CarMeetAdapter(
         val locationText: TextView =
             itemView.findViewById(R.id.locationText)
 
+        val dateText: TextView =
+            itemView.findViewById(R.id.dateText)
+
         val editButton: Button =
             itemView.findViewById(R.id.editButton)
 
@@ -63,6 +66,8 @@ class CarMeetAdapter(
 
         holder.locationText.text =
             meet.location
+
+        holder.dateText.text = "Date: ${meet.date}"
 
         holder.editButton.setOnClickListener {
             onEdit(meet)

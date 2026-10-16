@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:padding="90dp"
         android:text="Car Meets App"
         android:textAlignment="center"
         android:textSize="34sp"

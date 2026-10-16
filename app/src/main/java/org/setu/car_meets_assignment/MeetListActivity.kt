@@ -3,6 +3,7 @@ package org.setu.car_meets_assignment
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,14 +25,19 @@ class MeetListActivity : AppCompatActivity() {
 
         adapter = CarMeetAdapter(
             meets = AppData.carMeets.findAll(),
+            listener = object : OnMeetListener {
 
-            onEdit = { meet ->
-                editMeet(meet)
-            },
+                override fun onMeetClick(meet: CarmeetModel){
+                    editMeet(meet)
+                }
 
-            onDelete = { mark ->
-                deleteMeet(mark)
+                override fun onMeetLongClick(meet: CarmeetModel): Boolean {
+                    deleteMeet(meet)
+                    return true
+                }
+
             }
+
         )
 
         recyclerView.layoutManager =
@@ -71,12 +77,18 @@ class MeetListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun deleteMeet(mark: CarmeetModel) {
-
-        AppData.carMeets.delete(mark.id)
-
-        adapter.updateMeets(
-            AppData.carMeets.findAll()
-        )
+    private fun deleteMeet(meet: CarmeetModel) {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Car Meet")
+            .setMessage("Are you sure you want to delete '${meet.title}'?")
+            .setPositiveButton("Delete") { dialog, _ ->
+                AppData.carMeets.delete(meet.id)
+                adapter.updateMeets(AppData.carMeets.findAll())
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
